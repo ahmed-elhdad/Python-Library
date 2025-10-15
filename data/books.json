@@ -1,1 +1,30 @@
-[{"title": "fsdfs", "author": "fdsf", "year": "fdsf", "count": "ff"}]
+[
+  {
+    "title": "ffd",
+    "author": "fdsf",
+    "year": "fsdfds",
+    "count": "dsf",
+    "available": true
+  },
+  {
+    "title": "dsfds",
+    "author": "fsdf",
+    "year": "fsdf",
+    "count": "fsdf",
+    "available": true
+  },
+  {
+    "title": "dsfds",
+    "author": "fd",
+    "year": "fds",
+    "count": "fdsf",
+    "available": true
+  },
+  {
+    "title": "fdsfa",
+    "author": "fsdf",
+    "year": "fsdf",
+    "count": "fdsffdsf",
+    "available": true
+  }
+]
