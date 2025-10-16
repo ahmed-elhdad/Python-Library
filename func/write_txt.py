@@ -10,11 +10,8 @@ def write_txt(path,mode,txt):
                 print("no thing to write")
             else:
                 if len(books) > 1 or len(books) == 1:
-                    print("books > 1")
                     empty_file(path)
-                else:
-                    print("books < 1")
-                    
                 f.write(json_txt)
+                return True
     except Exception as e:
-        print ("dfdsf",e)
+        print ("Error: ",e)

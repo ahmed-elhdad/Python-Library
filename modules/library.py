@@ -4,6 +4,8 @@ from func import check_exit
 from func.write_txt import write_txt
 from func.convert_from_json import convert_from_json
 from func.empty_file import empty_file
+from func.find_book import find_book
+import datetime
 json_text=convert_from_json("data/books.json","r+")
 if type(json_text)==bool:
     print("Empty file from lib")
@@ -35,7 +37,24 @@ class Library:
                 print('exited book')
                 return 
             else:
+                full_count=25
+                if count>full_count:
+                    print("The data is full ^^")
+                    print("will create it with 25 number of books")
+                    count=25
                 new_book=Book(title,author,True,year,count)
                 books.append(new_book.__dict__)
                 empty_file("data/books.json")
                 write_txt('data/books.json','r+',books)
+    def borrow_book():
+        title=input("Enter Book Title: \n")
+        x=find_book(title,books)
+        if x == 'not found':
+            print('not found Book ^^')
+            return
+        else:
+            find_book(title,books)
+            empty_file('data/books.json')
+            write_txt('data/books.json','w',books)
+            if write_txt == True:
+                print(f'you are borrowed the book called {title}')
