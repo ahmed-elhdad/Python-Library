@@ -1,12 +1,10 @@
 from modules.book import Book
-from func.check_exit import books
+from func import convert_from_json
 from func import check_exit
-from func.write_txt import write_txt
-from func.convert_from_json import convert_from_json
-from func.empty_file import empty_file
-from func.find_book import find_book
-import datetime
-json_text=convert_from_json("data/books.json","r+")
+from func import empty_file
+from func import write_txt
+from func import find_book
+json_text=convert_from_json.convert_from_json("data/books.json","r+")
 if type(json_text)==bool:
     print("Empty file from lib")
     
@@ -21,6 +19,9 @@ class Library:
         self.available=available
         self.count=count
         self.year=year
+        
+    def show_books():
+        print("show books")
     def add_book():
         title=input('Enter title: \n')
         author=input('Enter author: \n')
@@ -44,17 +45,39 @@ class Library:
                     count=25
                 new_book=Book(title,author,True,year,count)
                 books.append(new_book.__dict__)
-                empty_file("data/books.json")
-                write_txt('data/books.json','r+',books)
+                empty_file.empty_file("data/books.json")
+                write_txt.write_txt('data/books.json','r+',books)
     def borrow_book():
         title=input("Enter Book Title: \n")
-        x=find_book(title,books)
+        x=find_book.find_book(title,books)
         if x == 'not found':
             print('not found Book ^^')
             return
         else:
-            find_book(title,books)
+            find_book.find_book(title,books)
             empty_file('data/books.json')
             write_txt('data/books.json','w',books)
             if write_txt == True:
                 print(f'you are borrowed the book called {title}')
+                
+    def delete_book():
+        try:
+            
+            title = input("Enter Book title: \n").strip()
+            if len(books) == 0:
+                print("No books")
+            else:
+                book=find_book.find_book(title,books)
+                if book =='not found':
+                    print('not found book ^^')
+                    return
+                del books[book]
+                print(books)
+                empty_file.empty_file('data/books.json')
+                if len(books)>0:
+                    write_txt.write_txt('data/books.json','r+',books)
+                else:
+                    return
+                
+        except Exception as e:
+            print("Error: ",e)
